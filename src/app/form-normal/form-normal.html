@@ -1,0 +1,26 @@
+<form (ngSubmit)="enviar()" #form="ngForm">
+    <label>
+        Nombre: 
+        <input name="nombre" [(ngModel)]="nombre" required>
+    </label>
+    <button type="submit" [disabled]="form.invalid">Enviar</button>
+</form>
+
+@if(listaNombres.length > 0) {
+    <table>
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Nombre</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for(n of listaNombres; track n; let i = $index) {
+                <tr>
+                    <td>{{ i + 1}}</td>
+                    <td>{{ n }}</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
