@@ -1,1 +1,19 @@
-<p>form-reactivo works!</p>
+<form [formGroup]="formulario" (ngSubmit)="enviar()">
+    <label>
+        Correo:
+        <input type="email" formControlName="correo">
+    </label>
+
+    @if(formulario.get('correo')?.invalid && formulario.get('correo')?.touched) {
+        <div>
+            @if (formulario.get('correo')?.errors?.['required']) {
+                <small>El correo es requerido.</small>
+            }
+            @if (formulario.get('correo')?.errors?.['email']) {
+                <small>Correo inválido.</small>
+            }
+        </div>
+    }
+    <button type="submit" [disabled]="formulario.invalid">Enviar</button>
+
+</form>
